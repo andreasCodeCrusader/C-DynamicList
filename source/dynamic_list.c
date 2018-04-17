@@ -14,3 +14,86 @@ dlistElem createNewDListElem(void* element) {
 
     return elem;
 }
+
+dlisthead createNewDList() {
+    dlisthead listHead;
+
+    if ( (listHead = malloc(sizeof(dlisthead))) != NULL ) {
+        listHead->next = NULL;
+    }
+    else {
+        listHead = NULL;
+    }
+
+    return listHead;
+}
+
+dlist createNewDListNode(dlistElem element, string elementType) {
+    dlist listNode;
+
+    if ( (listNode = malloc(sizeof(dlist))) != NULL ) {
+        listNode->next = NULL;
+        listNode->this = element;
+        listNode->elementType = elementType;
+
+    }
+    else {
+        listNode = NULL;
+    }
+
+    return listNode;
+}
+
+dlist getDlistLastNode(dlisthead list) {
+    dlist node = list->next;
+    if (node == NULL) {
+        return node;
+    }
+    while(node->next != NULL) {
+        node = node->next;
+    }
+    return node;
+}
+
+int glueToHead(dlisthead head, dlist target) {
+    if ( head->next = target ) {
+        return 1;
+    }
+    return 0;
+}
+
+int glueToPointer(dlist lastNode, dlist target) {
+    if ( lastNode->next = target ) {
+        return 1;
+    }
+    return 0;
+}
+
+void addToList(dlisthead list, void* element, string elementType) {
+    dlistElem elem;
+    dlist node;
+    int error = 0;
+    if ( (elem = createNewDListElem(element)) == NULL ) {
+        error++;
+        printf("Error Creating new dlistElement\n");
+        return;
+    }
+
+    if ( (node = createNewDListNode(element, elementType)) == NULL ) {
+        printf("Error creating new Node\n");
+        return;
+    }
+
+    dlist lastNode = getDlistLastNode(list);
+
+    if ( lastNode == NULL ) {
+        if ( !glueToHead(list, node) ){
+            return;
+        }
+    }
+    else {
+        if ( !glueToPointer(lastNode, node) ){
+            return;
+        }
+    }
+}
