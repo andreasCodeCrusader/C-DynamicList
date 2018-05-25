@@ -19,7 +19,8 @@ typedef struct dynamicListHead {
 
 dlistElem createNewDListElem(void* element);
 dlisthead createNewDList();
-dlist createNewDListNode(dlistElem element, string elementType);
-int glueToHead(dlisthead head, dlist target);
-int glueToPointer(dlist lastNode, dlist target);
-void addToList(dlisthead list, void* element, string elementType);
+dlist     createNewDListNode(dlistElem element, string elementType);
+int       glueToHead(dlisthead head, dlist target);
+int       glueToPointer(dlist lastNode, dlist target);
+void      addToList(dlisthead list, void* element, string elementType);
+int       emptyList(dlisthead list);

@@ -52,6 +52,7 @@ dlist getDlistLastNode(dlisthead list) {
     while(node->next != NULL) {
         node = node->next;
     }
+
     return node;
 }
 
@@ -78,16 +79,19 @@ void addToList(dlisthead list, void* element, string elementType) {
         printf("Error Creating new dlistElement\n");
         return;
     }
+    // printf("List element created\n");
 
     if ( (node = createNewDListNode(element, elementType)) == NULL ) {
         printf("Error creating new Node\n");
         return;
     }
+    // printf("List node created\n");
 
     dlist lastNode = getDlistLastNode(list);
 
     if ( lastNode == NULL ) {
         if ( !glueToHead(list, node) ){
+            printf("Error glueToHead\n");
             return;
         }
     }
@@ -96,4 +100,14 @@ void addToList(dlisthead list, void* element, string elementType) {
             return;
         }
     }
+    // printf("Added to list\n");
+}
+
+int emptyList(dlisthead list) {
+    int returnVal = 0;
+    if (list->next == NULL){
+        returnVal = 1;
+    }
+
+    return returnVal;
 }
